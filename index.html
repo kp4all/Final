@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+  <link rel="stylesheet" href="">
+  <style>
+  .full {
+  margin-top: 45px;
+}
+.all {
+  display: grid;
+  grid-template-areas: 
+    "a b c d"
+    "e f g h"
+    "i j k l";
+  grid-template-rows: 1fr 1fr 
+  1fr; /* Set heights for each row */
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Use fraction units for equal width */
+  align-items: center;  /* Center items vertically */
+  justify-items: center; /* Center items horizontally */
+  grid-gap: 4px;
+  columm-gap: 2px;
+  /* Center the grid within its container */
+  width: 600px; /* Set a width for the grid container */
+  height: 200px;
+  margin: 0 auto; /* Center the grid in the parent */
+/* Optional: Add border for visualization */
+ border: none;
+  
+}
+
+input[type="number"] {
+  width: 100%; /* Make inputs take full width of their grid cell */
+/* Include padding and border in the element's total width */
+}
+
+#all > div {
+  /* Add styles to ensure contents do not overflow */
+  overflow: hidden; /* Prevents overflow */
+  text-overflow: ellipsis; /* Adds ellipsis for overflow text */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#a { grid-area: a; color: #39A9AC; border: solid 2px #39A9AC;}
+#b { grid-area: b; color: #39A9AC; border: solid 2px #39A9AC; }
+#c { grid-area: c; color: #39A9AC; border: solid 2px #39A9AC; }
+#d { grid-area: d; color: #39A9AC;border: solid 2px #39A9AC; }
+#e { grid-area: e; color: #39A9AC; border: solid 2px #39A9AC;}
+#f { grid-area: f; color: #39A9AC; border: solid 2px #39A9AC;}
+#g { grid-area: g; color: #39A9AC; border: solid 2px #39A9AC;}
+#h { grid-area: h; color: #39A9AC; border: solid 2px #39A9AC;}
+#i { grid-area: i; color: #39A9AC; border: solid 2px #39A9AC;}
+#j { grid-area: j; color: #39A9AC; border: solid 2px #39A9AC;}
+#k { grid-area: k; color: #39A9AC; border: solid 2px #39A9AC;}
+#l { grid-area: l; color: #39A9AC; border: solid 2px #39A9AC;}
+input {
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.selectt {
+  border: 2px solid red;
+  background-color: red;
+  margin-left: 3pxpx;
+  margin-top: 8px;
+  color: white;
+  font-family: Monospace;
+  height: 50px;
+  width: 100px;
+  font-size: 20px;
+  
+}
+.second {
+  border: solid 2px red;
+  background-color: red;
+  margin-top: 8px;
+  color: white;
+  font-family: Monospace;
+  height: 50px;
+  width: 120px;
+  font-size: 20px;
+}
+.operation {
+  border: solid 2px red;
+  background-color: white;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 8px;
+  font-family: Monospace;
+  height: 50px;
+  width: 120px;
+  font-size: 20px;
+}
+body {
+  font-family: Monospace;
+}
+#button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+button {
+  background-color: #01BFFD;
+  border: none;
+  color: white;
+  font-family: Monospace;
+  margin-left: 60px;
+  margin-top: 3px;
+  height: 50px;
+  width: 100px;
+  font-size: 20px;
+}
+p {
+  margin-left: 100px;
+  width: 150px;
+  height: 50px;
+  background-color: grey;
+  color: white;
+  font-size: 20px;
+  justify-content: center;
+  text-align: center;
+  
+}
+#multi {
+  width: 20px;
+  
+}
+#mute {
+  width: 20px;
+  margin-left: 30px;
+}
+h1 {
+  font-family: Monospace;
+  text-align: center;
+  margin-top: 45px;
+  font-size: 50px;
+}
+</style>
+  <title>Matrix Calculator</title>
+  <body>
+    <h1>MATRIX OPERATOR</h1>
+     <div class="full"><div class="all">
+      <input id="a" type="number"><input id="b" type="number"><input id="c" type="number"><input id="d" type="number">
+      <input id="e" type="number"><input id="f" type="number"><input id="g" type="number"><input id="h" type="number">
+      <input id="i" type="number"><input id="j" type="number"><input id="k" type="number"><input id="l" type="number">
+    </div>
+    
+   <div class="flex"><center><input id="mute" type="number" value="1"><select class="selectt">
+      <option selected="selected" disabled="disabled">Select</option>
+      <option id="R1">R1</option>  
+      <option id="R2">R2</option>
+      <option id="R3">R3</option>
+    </select>
+    
+    <select class="operation">
+      <option id="Add">Add</option>
+      <option id="Subtract">Subtract</option>
+      <option id="Multiply">Multiply</option>
+      <option id="divide">Divide</option></select>
+    
+    <input id="multi" type="number" value="1"><select class="second">
+      <option selected="selected" disabled="disabled">Select</option>
+      <option id="R1">R1</option>  
+      <option id="R2">R2</option>
+      <option id="R3">R3</option>
+    </select></center></div>
+    
+   <div id="button"> <button onclick="last()">SOLVE</button>
+    <p></p></div> </div>
+    <script>
+      const choose = document.querySelector(".selectt");
+const sectwo = document.querySelector(".second");
+
+function last() {
+  // Retrieve input values inside the function
+  const aone = parseFloat(document.getElementById("a").value) || 0;
+  const atwo = parseFloat(document.getElementById("b").value) || 0;
+  const athree = parseFloat(document.getElementById("c").value) || 0;
+  const afour = parseFloat(document.getElementById("d").value) || 0;
+  const afive = parseFloat(document.getElementById("e").value) || 0;
+  const asix = parseFloat(document.getElementById("f").value) || 0;
+  const aseven = parseFloat(document.getElementById("g").value) || 0;
+  const aeight = parseFloat(document.getElementById("h").value) || 0;
+  const anine = parseFloat(document.getElementById("i").value) || 0;
+  const aten = parseFloat(document.getElementById("j").value) || 0;
+  const aeleven = parseFloat(document.getElementById("k").value) || 0;
+  const atwelve = parseFloat(document.getElementById("l").value) || 0;
+
+  const hello = [aone, atwo, athree, afour]; 
+  const yelo = [afive, asix, aseven, aeight];
+  const olo = [anine, aten, aeleven, atwelve];
+  let empty = null;  
+  let emptwo = null; 
+
+  const yes = choose.options[choose.selectedIndex].id;  
+  const secsub = sectwo.options[sectwo.selectedIndex].id;  
+  const method = document.querySelector(".operation");
+  const typedValue = method.options[method.selectedIndex].id;  
+
+  if (yes === "R1") {
+    empty = hello;
+  } else if (yes === "R2") {
+    empty = yelo;
+  } else {
+    empty = olo; 
+  }
+
+  if (secsub === "R2") {
+    emptwo = yelo;
+  } else if (secsub === "R1") {
+    emptwo = hello;
+  } else {
+    emptwo = olo; 
+  }
+
+  const ratan = document.getElementById("multi").value;
+  const tata = document.getElementById("mute").value;
+  const arrayy = [parseFloat(ratan)];
+  const list = [parseFloat(tata)];
+
+  let result = [];
+
+  if (empty && emptwo) {
+    if (typedValue === "Add") {
+      result = empty.map((value, index) => list[0] * value + emptwo[index] * arrayy[0]);
+    } else if (typedValue === "Divide") {
+      result = empty.map((value, index) => list[0] * value / emptwo[index] * arrayy[0]);  
+    } else if (typedValue === "Multiply") {
+      result = empty.map((value, index) => list[0] * value * emptwo[index] * arrayy[0]);
+    } else if (typedValue === "Subtract") {
+      result = empty.map((value, index) => list[0] * value - emptwo[index] * arrayy[0]);
+    }
+    
+    const page = document.querySelector("p");
+    page.innerHTML = result;
+  }
+}
+    </script>
+  </body>
+</html>
